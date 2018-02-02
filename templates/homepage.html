@@ -4,7 +4,7 @@
     <title>Volta</title>
     <script src="http://code.jquery.com/jquery.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtZONodr8731LhzdyStOKutzP83XjEDvk"></script>
-    </script>
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
 </head>
 <body>
     <div id="map" style="height: 500px;""></div>
@@ -17,24 +17,54 @@
         // put map on page
         function initMap() {
             var mapOptions = {
-                zoom: 13,
+                zoom: 11,
                 center: {lat: 37.765, lng: -122.419}
             };
             map = new google.maps.Map(m, mapOptions);
         }
 
+        // put clusters on map
+        function putCluster(markersToClusters){
+            var clusterStyles = [
+            {
+                textColor: 'white',
+                url: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m1.png',
+                height: 50,
+                width: 50
+              }
+            ];
+
+            var mcOptions = {
+                gridSize: 50,
+                styles: clusterStyles,
+                maxZoom: 15
+            };
+            
+            var markerCluster = new MarkerClusterer(map, markersToClusters, mcOptions);
+        }
+
+        // put single markers on map
+        function putMarker(markersSingle){
+            for (var i = 0; i < markersSingle.length; i ++){
+                markersSingle[i].setMap(map);
+                google.maps.event.trigger(markersSingle[i], 'click');
+            };
+        }
+
+        
+        initMap();
+        
+        // get data from Volta API
         var headers = {
           'Accept':'application/json'
-
         };
 
-        // Volta API
         $.ajax({
           url: 'https://api.voltaapi.com/v1/stations',
           method: 'get',
 
           headers: headers,
-          success: classifyMarker,
+          success: displayData,
         })
 
 
@@ -42,7 +72,7 @@
         var active = [];
         var troubled = [];
 
-        function classifyMarker(data){
+        function displayData(data){
 
             // loop over obtained from API stations
             for (var i = 0; i < data.length; i++) {
@@ -66,36 +96,16 @@
                         title: title
                     });
                 
-                // classify marker and put into appropriate array
+                // classify marker and put it into appropriate array
                 if (data[i].status == 'active'){
                     active.push(marker);
                 } else {
                     troubled.push(marker);
                 } 
             }
-        console.log(active.length);
-        console.log(troubled.length);
-        }
-
-        function putCluster(markers){
-            pass;
-        }
-
-        function putMarker(markers){
-            pass;
-        }
-
-
-        function putData(markers){
-            classifyMarker(data);
             putCluster(active);
             putMarker(troubled);
         }
-
-        initMap();
-        // classifyMarker();
-
-
 
 
     </script>
