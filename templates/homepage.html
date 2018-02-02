@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Volta</title>
+    <script src="http://code.jquery.com/jquery.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtZONodr8731LhzdyStOKutzP83XjEDvk"></script>
     </script>
 </head>
@@ -23,6 +24,21 @@
         }
 
         initMap();
+
+        var headers = {
+          'Accept':'application/json'
+
+        };
+
+        $.ajax({
+          url: 'https://api.voltaapi.com/v1/stations',
+          method: 'get',
+
+          headers: headers,
+          success: function(data) {
+            console.log(JSON.stringify(data));
+          }
+        })
 
 
     </script>
