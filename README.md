@@ -1,18 +1,17 @@
 Clone this repo:
-    https://github.com/mariiagracheva/volta
+https://github.com/mariiagracheva/volta
 
 Create virtual environment inside a directory:
-    virtualenv env
-    source env/bin/activate
+$ virtualenv env
+$ source env/bin/activate
 
 Install the requirements:
-    pip install -r requirements.txt
+$ pip install -r requirements.txt
 
 Start running server from command line:
-    python server.py
+$ python server.py
 
-Open up your browser and navigate to:
-    'localhost:5000/'
+Open up your browser and navigate to 'localhost:5000/'
 
 
 Blue clusters of working Volta stations are displayed on the map. For that I used GoogleMaps MarkerClusterer.
