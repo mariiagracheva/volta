@@ -1,9 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <title>Volta</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtZONodr8731LhzdyStOKutzP83XjEDvk"></script>
+    </script>
 </head>
 <body>
-test
+    <div id="map" style="height: 500px;""></div>
+
+    <script>
+        
+        var m = document.getElementById('map');
+        var map;
+
+        // put map on page
+        function initMap() {
+            var mapOptions = {
+                zoom: 13,
+                center: {lat: 37.765, lng: -122.419}
+            };
+            map = new google.maps.Map(m, mapOptions);
+        }
+
+        initMap();
+
+
+    </script>
 </body>
 </html>
