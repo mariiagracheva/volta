@@ -16,4 +16,4 @@ Open up your browser and navigate to 'localhost:5000/'
 
 Blue clusters of working Volta stations are displayed on the map. For that I used GoogleMaps MarkerClusterer.
 Stations that have a different from "active" status are displayed with single pins: "needs service" - red pins,  "under construction" - yellow pins.
-This kind of data presentation gives an understanding whethier a person can find a working station close to a non-active one or not.
+This data presentation gives an understanding whethier a person can find a working station close to a non-active one or not.
